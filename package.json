@@ -1,0 +1,19 @@
+{
+	"name": "integration-pipedrive-bling",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/EduardoGimenesCustodio/integration-pipedrive-bling.git",
+	"author": "Eduardo Henrique Gimenes Custodio <eduardo.gimenes.custodio@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"start": "node src/server.js",
+		"dev": "nodemon src/server.js"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.15"
+	},
+	"dependencies": {
+		"express": "^4.17.3",
+		"mongoose": "^6.2.3"
+	}
+}
