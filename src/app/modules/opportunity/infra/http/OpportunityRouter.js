@@ -19,4 +19,6 @@ opportunityRouter.get(
 	OpportunityController.getWonDealsAndSaveAsDemand
 );
 
+opportunityRouter.get("/get-all-demands", OpportunityController.getAllDemands);
+
 module.exports = opportunityRouter;
