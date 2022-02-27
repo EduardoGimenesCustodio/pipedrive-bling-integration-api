@@ -9,7 +9,7 @@ opportunityRouter.post("/", OpportunityController.create);
 
 opportunityRouter.get("/get-won-deals", OpportunityController.getWonDeals);
 
-opportunityRouter.get(
+opportunityRouter.post(
 	"/save-deals-as-demand",
 	OpportunityController.saveDealsAsDemand
 );
@@ -20,5 +20,10 @@ opportunityRouter.get(
 );
 
 opportunityRouter.get("/get-all-demands", OpportunityController.getAllDemands);
+
+opportunityRouter.get(
+	"/get-all-demands-save-as-opportunity",
+	OpportunityController.saveDemandsAsOpportunity
+);
 
 module.exports = opportunityRouter;
