@@ -13,7 +13,7 @@ class OpportunityController {
 
 			const data = await Opportunity.create(dataToCreate);
 
-			return res.json(data);
+			return res.status(201).json(data);
 		} catch (error) {
 			return res.status(error.status || 500).json({ error: error.message });
 		}
@@ -23,7 +23,18 @@ class OpportunityController {
 		try {
 			const data = await Opportunity.find({});
 
-			return res.json(data);
+			return res.status(200).json(data);
+		} catch (error) {
+			return res.status(error.status || 500).json({ error: error.message });
+		}
+	}
+
+	async getWonDeals(req, res) {
+		try {
+			const getWonDeals = new GetWonDeals();
+			const wonDeals = await getWonDeals.run();
+
+			return res.status(200).json(wonDeals);
 		} catch (error) {
 			return res.status(error.status || 500).json({ error: error.message });
 		}
