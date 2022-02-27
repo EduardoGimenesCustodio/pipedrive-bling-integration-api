@@ -1,5 +1,6 @@
 const Opportunity = require("../model/Opportunity");
 const GetWonDeals = require("../services/GetWonDeals");
+const SaveDealsAsDemand = require("../services/SaveDealsAsDemand");
 
 class OpportunityController {
 	async create(req, res) {
@@ -40,12 +41,28 @@ class OpportunityController {
 		}
 	}
 
+	async saveDealsAsDemand(req, res) {
+		try {
+			const deals = req.body.deals;
+
+			const saveDealsAsDemand = new SaveDealsAsDemand();
+			const createdDemands = await saveDealsAsDemand.run(deals);
+
+			return res.status(201).json({ createdDemands: createdDemands });
+		} catch (error) {
+			return res.status(error.status || 500).json({ error: error.message });
+		}
+	}
+
 	async getWonDealsAndSaveAsDemand(req, res) {
 		try {
 			const getWonDeals = new GetWonDeals();
 			const wonDeals = await getWonDeals.run();
 
-			return res.status(201).json(wonDeals);
+			const saveDealsAsDemand = new SaveDealsAsDemand();
+			const createdDemands = await saveDealsAsDemand.run(wonDeals);
+
+			return res.status(201).json({ createdDemands: createdDemands });
 		} catch (error) {
 			return res.status(error.status || 500).json({ error: error.message });
 		}
