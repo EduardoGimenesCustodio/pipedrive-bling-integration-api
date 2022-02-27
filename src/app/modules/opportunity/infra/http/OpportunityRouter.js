@@ -7,4 +7,9 @@ opportunityRouter.get("/", OpportunityController.findAll);
 
 opportunityRouter.post("/", OpportunityController.create);
 
+opportunityRouter.get(
+	"/get-won-deals-and-save-as-demand",
+	OpportunityController.getWonDealsAndSaveAsDemand
+);
+
 module.exports = opportunityRouter;
