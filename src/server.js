@@ -12,8 +12,8 @@ class App {
 		this.middlewares();
 		this.routes();
 
-		this.express.listen(3001, () =>
-			console.log("API REST rodando na porta 3001")
+		this.express.listen(process.env.PORT, () =>
+			console.log(`API REST rodando na porta ${process.env.PORT}`)
 		);
 	}
 
