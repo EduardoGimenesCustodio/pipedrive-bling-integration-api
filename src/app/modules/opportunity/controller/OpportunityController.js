@@ -1,4 +1,5 @@
 const Opportunity = require("../model/Opportunity");
+const GetAllDemands = require("../services/GetAllDemands");
 const GetWonDeals = require("../services/GetWonDeals");
 const SaveDealsAsDemand = require("../services/SaveDealsAsDemand");
 
@@ -48,7 +49,7 @@ class OpportunityController {
 			const saveDealsAsDemand = new SaveDealsAsDemand();
 			const createdDemands = await saveDealsAsDemand.run(deals);
 
-			return res.status(201).json({ createdDemands: createdDemands });
+			return res.status(201).json({ createdDemands });
 		} catch (error) {
 			return res.status(error.status || 500).json({ error: error.message });
 		}
@@ -62,7 +63,18 @@ class OpportunityController {
 			const saveDealsAsDemand = new SaveDealsAsDemand();
 			const createdDemands = await saveDealsAsDemand.run(wonDeals);
 
-			return res.status(201).json({ createdDemands: createdDemands });
+			return res.status(201).json({ createdDemands });
+		} catch (error) {
+			return res.status(error.status || 500).json({ error: error.message });
+		}
+	}
+
+	async getAllDemands(req, res) {
+		try {
+			const getAllDemands = new GetAllDemands();
+			const demands = await getAllDemands.run();
+
+			return res.status(200).json({ demands });
 		} catch (error) {
 			return res.status(error.status || 500).json({ error: error.message });
 		}
